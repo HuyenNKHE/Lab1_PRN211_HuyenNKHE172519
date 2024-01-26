@@ -1,0 +1,12 @@
+D:\Demo\FU\Ass01Solution\BusinessObject\bin\Debug\net5.0\BusinessObject.deps.json
+D:\Demo\FU\Ass01Solution\BusinessObject\bin\Debug\net5.0\BusinessObject.dll
+D:\Demo\FU\Ass01Solution\BusinessObject\bin\Debug\net5.0\BusinessObject.pdb
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.GeneratedMSBuildEditorConfig.editorconfig
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.AssemblyInfoInputs.cache
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.AssemblyInfo.cs
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.csproj.CoreCompileInputs.cache
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.sourcelink.json
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.dll
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\refint\BusinessObject.dll
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\BusinessObject.pdb
+D:\Demo\FU\Ass01Solution\BusinessObject\obj\Debug\net5.0\ref\BusinessObject.dll
