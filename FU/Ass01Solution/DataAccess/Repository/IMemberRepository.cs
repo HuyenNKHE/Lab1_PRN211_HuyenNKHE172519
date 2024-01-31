@@ -1,16 +1,21 @@
-﻿// IMemberRepository.cs in DataAccess project
-
-using BusinessObject;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccess.Repository
 {
     public interface IMemberRepository
     {
-        List<MemberObject> GetAllMembers();
-        MemberObject GetMemberByID(int id);
-        void AddMember(MemberObject member);
+        
+        IEnumerable<MemberObject> GetMembers();
+        MemberObject GetMemberByID(int memId);
+        MemberObject GetMemberByName(string memName);
+        void InsertMember(MemberObject member);
+        void DeleteMember(int memId);
         void UpdateMember(MemberObject member);
-        void DeleteMember(int id);
+        List<MemberObject> GetMemberByCityAndCountry(string text1, string text2);
     }
 }

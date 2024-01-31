@@ -1,37 +1,113 @@
-﻿using System;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
-using BusinessObject;
+using System.Linq;
 
 namespace DataAccess
 {
     public class MemberDAO
     {
-        // Define methods to perform CRUD operations on members
-        public List<MemberObject> GetAllMembers()
+
+        //Initialize member list 
+        private static List<MemberObject> MemberList = new List<MemberObject>()
         {
-            // Implement logic to retrieve all members from data source
-            return new List<MemberObject>(); // Placeholder
+            new MemberObject{MemberID=1, MemberName="Nguyen Khanh Huyen", Email="huyennkhe172519@fpt.edu.vn",City="Ha Noi", Country="Viet Nam", Password="12345678" },
+            new MemberObject{MemberID=2, MemberName="Huyen2003", Email="nguyenkhanhhuyen2003tt@gmail.com",City="Ho Chi Minh", Country="United State", Password="123456789" },
+            new MemberObject{MemberID=3, MemberName="Zack", Email="otakushojo023@gmail.com",City="Ho Chi Minh", Country="Viet Nam", Password="12345678911" },
+            new MemberObject{MemberID=4, MemberName="Joey", Email="Joey123@gmail.com",City="Ho Chi Minh", Country="United State", Password="12345678978" },
+            new MemberObject{MemberID=5, MemberName="Vuong Thi Huong", Email="huong@gmail.com",City="Ha Noi", Country="Viet Nam", Password="12345678" },
+            new MemberObject{MemberID=6, MemberName="Nguyen Viet Tuan", Email="tuansp@gmail.com",City="Ho Chi Minh", Country="United State", Password="123456789" },
+            new MemberObject{MemberID=7, MemberName="Vu Thanh Dat", Email="dat@gmail.com",City="Ho Chi Minh", Country="Viet Nam", Password="12345678911" },
+            new MemberObject{MemberID=8, MemberName="Nguyen Van A", Email="Joey123@gmail.com",City="Ho Chi Minh", Country="United State", Password="12345678978" },
+
+        };
+        //--------------------------------------------------------------
+        //Using Singleton Pattern
+        private static MemberDAO instance = null;
+        private static readonly object instanceLock = new object();
+        private MemberDAO() { }
+        public static MemberDAO Instance
+        {
+            get
+            {
+                lock (instanceLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new MemberDAO();
+                    }
+                    return instance;
+                }
+            }
         }
 
-        public MemberObject GetMemberByID(int id)
+        //----------------------------------------------------------------
+        public List<MemberObject> GetMemberList => MemberList;
+        //----------------------------------------------------------------
+        public MemberObject GetMemberByID(int memberID)
         {
-            // Implement logic to retrieve member by ID from data source
-            return null; // Placeholder
+            //using LINQ to Object
+            MemberObject member = MemberList.SingleOrDefault(pro => pro.MemberID == memberID);
+            return member;
         }
+       
 
-        public void AddMember(MemberObject member)
+        public MemberObject GetMemberByName(string memberName)
         {
-            // Implement logic to add member to data source
+            //using LINQ to Object
+            MemberObject member = MemberList.SingleOrDefault(pro => pro.MemberName == memberName);
+            return member;
         }
-
-        public void UpdateMember(MemberObject member)
+        //-----------------------------------------------------------------
+        //Add a new member
+        public void AddNew(MemberObject member)
         {
-            // Implement logic to update member in data source
+            MemberObject pro = GetMemberByID(member.MemberID);
+            if (pro == null)
+            {
+                MemberList.Add(member);
+            }
+            else
+            {
+                throw new Exception("Member is already exists");
+            }
         }
-
-        public void DeleteMember(int id)
+        //Update a member
+        public void Update(MemberObject member)
         {
-            // Implement logic to delete member from data source
+            MemberObject c = GetMemberByID(member.MemberID);
+            if (c != null)
+            {
+                var index = MemberList.IndexOf(c);
+                MemberList[index] = member;
+            }
+            else
+            {
+                throw new Exception("Member does not already exists.");
+            }
+        }
+        //------------------------------------------------------------------
+        //Remove a member
+        public void Remove(int MemberID)
+        {
+            MemberObject p = GetMemberByID(MemberID);
+            if (p != null)
+            {
+                MemberList.Remove(p);
+            }
+            else
+            {
+                throw new Exception("Member does not already exists.");
+            }
+        }
+        public List<MemberObject> GetMemberByCityAndCountry(string city, string country)
+        {
+            List<MemberObject> FList = new List<MemberObject>();
+            for (int i = 1; i <= MemberList.Count; i++)
+            {
+                if (MemberList[i - 1].City == city && MemberList[i - 1].Country == country) { FList.Add(MemberList[i - 1]); }
+            }
+            return FList;
         }
     }
 }

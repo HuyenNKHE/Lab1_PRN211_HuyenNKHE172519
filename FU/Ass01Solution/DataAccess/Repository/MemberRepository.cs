@@ -1,38 +1,23 @@
-﻿// MemberRepository.cs in DataAccess project
-
-using BusinessObject;
+﻿using BusinessObject;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccess.Repository
 {
     public class MemberRepository : IMemberRepository
     {
-        // Implement methods defined in IMemberRepository interface
-        public List<MemberObject> GetAllMembers()
-        {
-            // Implement logic to retrieve all members from data source
-            return new List<MemberObject>(); // Placeholder
-        }
+        public MemberObject GetMemberByID(int memId) => MemberDAO.Instance.GetMemberByID(memId);
+        public MemberObject GetMemberByName(string memName) => MemberDAO.Instance.GetMemberByName(memName);
 
-        public MemberObject GetMemberByID(int id)
-        {
-            // Implement logic to retrieve member by ID from data source
-            return null; // Placeholder
-        }
+        public IEnumerable<MemberObject> GetMembers() => MemberDAO.Instance.GetMemberList;
+        public void InsertMember(MemberObject member) => MemberDAO.Instance.AddNew(member);
+        public void DeleteMember(int memId) => MemberDAO.Instance.Remove(memId);
+        public void UpdateMember(MemberObject member) => MemberDAO.Instance.Update(member);
 
-        public void AddMember(MemberObject member)
-        {
-            // Implement logic to add member to data source
-        }
+        public List<MemberObject> GetMemberByCityAndCountry(string city, string country) => MemberDAO.Instance.GetMemberByCityAndCountry(city,country);
 
-        public void UpdateMember(MemberObject member)
-        {
-            // Implement logic to update member in data source
-        }
-
-        public void DeleteMember(int id)
-        {
-            // Implement logic to delete member from data source
-        }
     }
 }
